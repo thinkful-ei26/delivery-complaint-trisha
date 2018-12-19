@@ -2,9 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const app = express();
-const URL = 'https://us-central1-delivery-form-api.cloudfunctions.net/api/report';
+const BASE_URL = 'https://us-central1-delivery-form-api.cloudfunctions.net';
 
-app.post(URL, bodyParser.json(), (req, res) => {
+app.post(`${BASE_URL}/api/report`, bodyParser.json(), (req, res) => {
   //Validate the field types
   if(req.body) {
     console.log(req.body);

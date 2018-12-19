@@ -18,5 +18,15 @@ code {
 }
 
 .form-warning {
-  color: orangered
+  color: rgb(206, 90, 48)
+}
+
+.message-success {
+  background-color: green;
+  color: white;
+}
+
+.message-error {
+  background-color: red;
+  color: white;
 }
