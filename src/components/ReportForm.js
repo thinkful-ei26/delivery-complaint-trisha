@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './report-form.css';
-
 import { reduxForm, Field } from 'redux-form';
+import { required, nonEmpty, validChar, isNumber } from '../validators';
+
 
 export class ReportForm extends Component {
   onSubmit(values) {
@@ -19,7 +20,7 @@ export class ReportForm extends Component {
           onSubmit={this.props.handleSubmit(values => this.onSubmit(values) )}
         >
 
-          <label for="trackingNumber">
+          <label htmlFor="trackingNumber">
             Tracking Number:
           </label>
           <Field 
@@ -28,9 +29,10 @@ export class ReportForm extends Component {
             component='input'
             label="Tracking Number:"
             id="trackingNumber" 
+            validate={[required, nonEmpty, validChar, isNumber]}
           />
 
-          <label for="issue">
+          <label htmlFor="issue">
             What is your issue?
           </label>
           <Field 
@@ -46,7 +48,7 @@ export class ReportForm extends Component {
             <option value="other">Other (give details belwo)</option>
           </Field>
 
-          <label for="details">
+          <label htmlFor="details">
           Give more details (optional)
           </label>
           <Field 
@@ -55,6 +57,7 @@ export class ReportForm extends Component {
             id="details" 
             component='input'
             label="Give more details (optional)"
+            validate={[required, nonEmpty]}
           />
           <button type="submit">Submit</button>
         </form>
