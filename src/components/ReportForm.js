@@ -25,6 +25,7 @@ export class ReportForm extends Component {
             Tracking Number:
           </label> */}
           <Field 
+            element="input"
             name="trackingNumber" 
             type="text"
             component={Input}
@@ -37,8 +38,9 @@ export class ReportForm extends Component {
             What is your issue?
           </label> */}
           <Field 
+            element="select"
             name="issue"
-            component={Input} 
+            component={Input}
             id="issue"
             label="What is your issue?"
             validate={[required, nonEmpty]}
@@ -54,6 +56,7 @@ export class ReportForm extends Component {
           Give more details (optional)
           </label> */}
           <Field 
+            element="input"
             name="details" 
             type="textarea"
             id="details" 

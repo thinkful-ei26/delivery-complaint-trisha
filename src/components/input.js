@@ -4,9 +4,10 @@ import '../index.css';
 export default class Input extends Component {
 
   //add componentDidUpdate later
-
+  
 
   render() {
+    console.log(this.props.children);
     //dynamically set the Element component, default to input if not found
     const Element = this.props.element || 'input';
 
@@ -42,7 +43,10 @@ export default class Input extends Component {
           id={this.props.input.name}
           type={this.props.type}
           ref={ input => (this.input = input )}
-        />
+          value={this.props.input.value}
+        >
+          {this.props.children}
+        </Element>
       </div>
     )
   }
