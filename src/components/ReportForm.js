@@ -98,8 +98,8 @@ export class ReportForm extends Component {
             <option value="not-delivered">My delivery hasn't arrived</option>
             <option value="wrong-item">The wrong item was delivered</option>
             <option value="missing-part">Part of my order was missing</option>
-            <option value="damanged">Some of my order was missing</option>
-            <option value="other">Other (give details belwo)</option>
+            <option value="damaged">Some of my order was missing</option>
+            <option value="other">Other (give details below)</option>
           </Field>
 
           <Field 
