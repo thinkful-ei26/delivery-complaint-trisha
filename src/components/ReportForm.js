@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './report-form.css';
 import { reduxForm, Field } from 'redux-form';
-import { required, nonEmpty, validChar, isNumber } from '../validators';
+import { required, nonEmpty, validInput } from '../validators';
 
 import Input from './input';
 
@@ -30,7 +30,7 @@ export class ReportForm extends Component {
             component={Input}
             label="Tracking Number:"
             id="trackingNumber" 
-            validate={[required, nonEmpty, validChar, isNumber]}
+            validate={[required, nonEmpty, validInput]}
           />
 
           {/* <label htmlFor="issue">
