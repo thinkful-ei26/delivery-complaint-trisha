@@ -3,6 +3,7 @@ import './report-form.css';
 import { reduxForm, Field } from 'redux-form';
 import { required, nonEmpty, validChar, isNumber } from '../validators';
 
+import Input from './input';
 
 export class ReportForm extends Component {
   onSubmit(values) {
@@ -20,26 +21,27 @@ export class ReportForm extends Component {
           onSubmit={this.props.handleSubmit(values => this.onSubmit(values) )}
         >
 
-          <label htmlFor="trackingNumber">
+          {/* <label htmlFor="trackingNumber">
             Tracking Number:
-          </label>
+          </label> */}
           <Field 
             name="trackingNumber" 
             type="text"
-            component='input'
+            component={Input}
             label="Tracking Number:"
             id="trackingNumber" 
             validate={[required, nonEmpty, validChar, isNumber]}
           />
 
-          <label htmlFor="issue">
+          {/* <label htmlFor="issue">
             What is your issue?
-          </label>
+          </label> */}
           <Field 
             name="issue"
-            component='select' 
+            component={Input} 
             id="issue"
             label="What is your issue?"
+            validate={[required, nonEmpty]}
           >
             <option value="not-delivered">My delivery hasn't arrived</option>
             <option value="wrong-item">The wrong item was delivered</option>
@@ -48,18 +50,22 @@ export class ReportForm extends Component {
             <option value="other">Other (give details belwo)</option>
           </Field>
 
-          <label htmlFor="details">
+          {/* <label htmlFor="details">
           Give more details (optional)
-          </label>
+          </label> */}
           <Field 
             name="details" 
             type="textarea"
             id="details" 
-            component='input'
+            component={Input}
             label="Give more details (optional)"
-            validate={[required, nonEmpty]}
           />
-          <button type="submit">Submit</button>
+          {/* disable button if user hasn't touched form */ }
+          <button 
+            type="submit"
+            disabled={this.props.pristine || this.props.submitting}>
+            Submit
+          </button>
         </form>
       </div>
     );
