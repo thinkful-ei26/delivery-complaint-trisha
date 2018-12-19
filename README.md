@@ -1,5 +1,10 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Resources:
+- [React Form: Curriculum](https://courses.thinkful.com/react-001v3/assignment/3.6)
+- [Project Requirements](https://courses.thinkful.com/dev-301v1/assignment/2.9.1)
+
+
 ## Available Scripts
 
 In the project directory, you can run:
