@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './report-form.css';
-import { reduxForm, Field, SubmissionError } from 'redux-form';
+import { reduxForm, Field, SubmissionError, focus } from 'redux-form';
 import { required, nonEmpty, validInput } from '../validators';
 import Input from './input';
 
@@ -8,9 +8,6 @@ const BASE_URL = 'https://us-central1-delivery-form-api.cloudfunctions.net';
 
 export class ReportForm extends Component {
   onSubmit(values) {
-    // console.log(values);
-
-    //1) make a fetch request and pass values into the form as req.body
     return fetch(`${BASE_URL}/api/report`, {
       method: 'POST',
       body: JSON.stringify(values),
@@ -18,7 +15,7 @@ export class ReportForm extends Component {
         'Content-Type': 'application/json'
       }
     })
-      .then(res => { //2) deal with the response
+      .then(res => {
         if (!res.ok) {
           if (
             res.headers.has('content-type') && res.headers
@@ -34,7 +31,7 @@ export class ReportForm extends Component {
         }
         return;
       })
-      .then( () => console.log('Submitted with values', values))
+      // .then( () => console.log('Submitted with values', values))
       .catch( err => {
         const { reason, message, location } = err;
         if (reason === 'ValidationError') {
@@ -57,7 +54,7 @@ export class ReportForm extends Component {
       if (this.props.submitSucceeded) {
         successMessage = (
           <div className="message message-success">
-              Message submitted successfully
+            Report submitted successfully
           </div>
         );
       }
@@ -65,13 +62,13 @@ export class ReportForm extends Component {
       let errorMessage;
       if (this.props.error) {
           errorMessage = (
-              <div className="message message-error">{this.props.error}</div>
+            <div className="message message-error">{this.props.error}</div>
           );
       }
     return (
       <div className="report">
         <header className="report-header">
-         <h2> Report a problem with your delivery</h2>
+         <h2>Report a problem with your delivery</h2>
         </header>
 
         <form
@@ -128,4 +125,7 @@ export class ReportForm extends Component {
 
 export default reduxForm({
   form: 'report',
+  //redux form's focus will automatically focus on the first incomplete field when the user submits an incorrect value
+  onSubmitFail: (errors, dispatch) =>
+    dispatch(focus('report', Object.keys(errors)[0]))
 })(ReportForm);
